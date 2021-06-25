@@ -1,12 +1,4 @@
-Commands for setting up nvidia 
-   43  ls /dev | grep ttyACM
-   44  screen /dev/ttyACM0 115200
-   45  ssh nvidia@192.168.55.1
-   46  ls /dev | grep ttyACM
-   47  screen /dev/ttyACM0 115200
-   48  sudo screen /dev/ttyACM0 115200
-   49  sdkmanager
-   50  sudo screen /dev/ttyACM0 115200
-   51  ls /dev | grep ttyACM
-   52  sudo screen /dev/ttyACM0 115200
-   53  ssh nvidia@192.168.55.1
+#Commands for setting up nvidia 
+1. ls /dev | grep ttyACM
+2. sudo screen /dev/ttyACM0 115200
+3. ssh nvidia@192.168.55.1

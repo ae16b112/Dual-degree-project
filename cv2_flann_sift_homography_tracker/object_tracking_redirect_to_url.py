@@ -10,8 +10,9 @@ Created on Mon Jun  7 14:04:48 2021
 import cv2
 import sys
 import numpy as np
+import time
 from flask import Flask, render_template, Response
-from matplotlib import pyplot as plt
+#from matplotlib import pyplot as plt
 app = Flask(__name__)
 
 (major_ver, minor_ver, subminor_ver) = (cv2.__version__).split('.')
@@ -166,10 +167,11 @@ def object_tracking(img, video, tracker, tracker_type, selection_type):
             cv2.putText(frame, "Tracking failure detected", (100,80), cv2.FONT_HERSHEY_SIMPLEX, 0.75,(0,0,255),2)
  
         # Display tracker type on frame
-        cv2.putText(frame, tracker_type + " Tracker", (100,20), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (50,170,50),2);
+        cv2.putText(frame, tracker_type + " Tracker", (100,20), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0,0,128),2);
      
         # Display FPS on frame
-        cv2.putText(frame, "FPS : " + str(int(fps)), (100,50), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (50,170,50), 2);
+        cv2.putText(frame, "FPS : " + str(int(fps)), (100,50), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0,0,128), 2);
+        cv2.putText(frame, "Current Time : " + time.ctime(), (100,80), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0,0,128), 2);
  
         # Display result
         #cv2.imshow("Tracking", frame)
@@ -186,7 +188,7 @@ def object_tracking(img, video, tracker, tracker_type, selection_type):
 @app.route('/video_feed')
 def video_feed():
     video = cv2.VideoCapture("./videos/test.mp4")
-    img = cv2.imread("./videos/crop_image.png", cv2.IMREAD_GRAYSCALE) #or Img = ""  for ROI based selection type
+    img = cv2.imread("./videos/crop_image_plane.png", cv2.IMREAD_GRAYSCALE) #or Img = ""  for ROI based selection type
     (tracker, tracker_type) = get_tracker()
     selection_type = "Homography_based"  #  "Homography_based" or "ROI"    
     #Video streaming route. Put this in the src attribute of an img tag
